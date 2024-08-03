@@ -11,8 +11,10 @@ A python script for calculating this value can be found over [here](python/calcu
 ### Boyer-Moore Algorithm
 The [Boyer-Moore string search algorithm](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm) is an algorithm for finding a substring within a string. It is more efficient than using a brute-force method.   
 
-The substring and string have their characters compared, starting from the right-most character of the substring. If the values match, then we shift the substring one index to the _left_ and compare again. If they do not match, then we shift the substring a certain number of indices to the _right_. By how many spaces or indices do we need to shift the substring to the right? A matching table (or dictionary) is constructed from the characters in the substring. This table (or dictionary) has the character as a key and the corresponding value which comes from the formula:
-```bash
+We align the string and substring starting from the first characters of both the string and substring. The substring and string have their characters compared, starting from the right-most character of the substring. If the values match, then we compare the next characters to the _left_ of both the string and substring, respectively. If they do not match, then we shift the substring a certain number of indices to the _right_, and begin the comparison process again.   
+
+By how many spaces or indices do we need to shift the substring to the right? We use a matching table (or dictionary) to determine the amount of spaces by which the substring needs to be shifted. This matching table (or dictionary) is constructed from the characters in the substring. It has the character as a key and the corresponding value which comes from the formula:
+```python
 shift_value = max(1, length_of_substring - index_of_current_character - 1)
 ```   
 
